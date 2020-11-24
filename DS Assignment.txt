@@ -1,0 +1,92 @@
+package assignment;
+
+
+public class Assignment {
+Node front;
+ Node rear;
+ public Assignment ()
+ {
+  front = null;
+  rear = null;
+ }
+ private class Node{
+ 
+  int s;
+  Node next;
+  Node(int s){
+   this.s = s;
+  }
+  public void displayData(){
+   System.out.println("s= " + s);
+  }
+ }
+ 
+ public void insertLast(int s){
+  Node newNode = new Node(s);
+  if(isEmpty()){
+   front = newNode;
+  }else{
+
+   rear.next = newNode;
+  }
+  rear = newNode;
+ }
+ 
+ public int deleteFirst(){  
+
+  int temp = front.s;
+
+  if(front.next == null){
+   rear = null;
+  }
+
+  front = front.next;
+  return temp;
+ }
+ 
+
+ public void displayList(){
+  Node current = front;
+  while(current != null){
+   current.displayData();
+   current = current.next;
+  }
+ }
+ 
+ public int nodeData(){
+  return front.s;
+ }
+ 
+ public boolean isEmpty(){
+  return front == null;
+ }
+
+ public void insert(int item){
+  insertLast(item);
+ }
+ 
+ public int delete(){
+  if(isEmpty()){
+   throw new RuntimeException("Queue is empty..");
+  }
+  return deleteFirst();
+ }
+ 
+ public int peek(){
+  if(isEmpty()){
+   throw new RuntimeException("Queue is empty..");
+  }
+  return nodeData();
+ }  
+    public static void main(String[] args) {
+       Assignment  queue = new Assignment ();
+  queue.insert(7);
+  queue.insert(9);
+  System.out.println("### Displaying Queue data###");
+  queue.displayList();
+  System.out.println("****Item peeked**** " + queue.peek());
+  System.out.println("^^^^deleting Queue elements^^^^");
+  System.out.println("**Item deleted** " + queue.delete());
+  System.out.println("**Item deleted** " + queue.delete());
+ }
+}
